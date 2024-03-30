@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: "Settlement Service"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+      base-path: "/"
+      path-mapping:
+        prometheus: "metrics"
+  metrics:
+    tags:
+      application: settlement-service
+
+server:
+  port: 8081

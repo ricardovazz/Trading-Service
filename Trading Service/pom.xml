@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>TradingService</artifactId>
+    <artifactId>tradingservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Trading Service</name>
     <description>Trading Service</description>
@@ -57,6 +57,9 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <image>
+                        <name>eu.gcr.io/symbolic-datum-416912/${project.artifactId}</name>
+                    </image>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
