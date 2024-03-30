@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: settlement
+  name: settlement
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: settlement
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: settlement
+    spec:
+      containers:
+      - image: eu.gcr.io/symbolic-datum-416912/settlementservice
+        name: settlementservice
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: settlement
+  name: settlement
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8081
+  selector:
+    app: settlement
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: trading
+  name: trading
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trading
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: trading
+    spec:
+      containers:
+      - image: eu.gcr.io/symbolic-datum-416912/tradingservice
+        name: tradingservice
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: trading
+  name: trading
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8081
+  selector:
+    app: trading
+status:
+  loadBalancer: {}
