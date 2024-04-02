@@ -36,7 +36,7 @@ public class TradeService {
         trades.put(id, trade);
 
         return webClient.post()
-                .uri("http://accounting-service/confirmations")
+                .uri("http://accounting-service/accounting/confirmations/" + id)
                 .bodyValue(new TradeConfirmation(trade.getId(), "", trade.getQuantity(), trade.getPrice(), trade.getTimestamp()))
                 .retrieve()
                 .bodyToMono(TradeConfirmation.class);

@@ -16,7 +16,7 @@ public class AccountingController {
     }
 
     @PostMapping("/confirmations/{tradeId}")
-    public Mono<Settlement> confirmTrade(@PathVariable Long tradeId, @RequestBody TradeConfirmation tradeConfirmation) {
+    public Mono<TradeConfirmation> confirmTrade(@PathVariable Long tradeId, @RequestBody TradeConfirmation tradeConfirmation) {
         return accountingService.confirmTrade(tradeId, tradeConfirmation);
     }
 

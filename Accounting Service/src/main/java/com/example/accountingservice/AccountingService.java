@@ -17,7 +17,7 @@ public class AccountingService {
 
     private final WebClient webClient;
 
-    public Mono<Settlement> confirmTrade(Long tradeId, TradeConfirmation tradeConfirmation) {
+    public Mono<TradeConfirmation> confirmTrade(Long tradeId, TradeConfirmation tradeConfirmation) {
 
         tradeConfirmation.setTradeId(tradeId);
         tradeConfirmation.setStatus("CONFIRMED");
@@ -25,10 +25,11 @@ public class AccountingService {
         confirmations.put(tradeId, tradeConfirmation);
 
         return webClient.post()
-                .uri("http://settlement-service/confirmations")
+                .uri("http://settlement-service/settlements")
                 .bodyValue(new Settlement(null, tradeId, tradeConfirmation.getConfirmedQuantity(), tradeConfirmation.getPrice(),tradeConfirmation.getConfirmationTimestamp()))
                 .retrieve()
-                .bodyToMono(Settlement.class);
+                .bodyToMono(Settlement.class)
+                .map(settlement -> new TradeConfirmation(settlement.getTradeId(), tradeConfirmation.getStatus(), settlement.getAmount(), settlement.getPrice(), tradeConfirmation.getConfirmationTimestamp()));
     }
 
     public Flux<TradeConfirmation> getAllConfirmations() {
