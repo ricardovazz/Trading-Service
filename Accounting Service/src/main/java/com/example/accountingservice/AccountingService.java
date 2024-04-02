@@ -25,7 +25,7 @@ public class AccountingService {
         confirmations.put(tradeId, tradeConfirmation);
 
         return webClient.post()
-                .uri("http://settlement-service/settlements")
+                .uri("http://settlement/settlements")
                 .bodyValue(new Settlement(null, tradeId, tradeConfirmation.getConfirmedQuantity(), tradeConfirmation.getPrice(),tradeConfirmation.getConfirmationTimestamp()))
                 .retrieve()
                 .bodyToMono(Settlement.class)
