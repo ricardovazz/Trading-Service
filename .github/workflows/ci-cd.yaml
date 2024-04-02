@@ -24,7 +24,7 @@ jobs:
     name: Build Container and Push
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v2
     - id: 'auth'
       uses: 'google-github-actions/auth@v1'
       with:
