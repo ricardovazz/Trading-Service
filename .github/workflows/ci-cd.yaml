@@ -42,7 +42,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+    - name: Build with Maven Settlement Service
       run: mvn spring-boot:build-image
       working-directory: ./Settlement Service
     - name: Build and push Docker image
@@ -50,3 +50,19 @@ jobs:
         IMAGE_ID=eu.gcr.io/symbolic-datum-416912/settlementservice
         docker push ${IMAGE_ID}
       working-directory: ./Settlement Service
+    - name: Build with Maven Trading Service
+      run: mvn spring-boot:build-image
+      working-directory: ./Trading Service
+    - name: Build and push Docker image
+      run: |
+        IMAGE_ID=eu.gcr.io/symbolic-datum-416912/tradingservice
+        docker push ${IMAGE_ID}
+      working-directory: ./Trading Service 
+    - name: Build with Maven Accounting Service
+      run: mvn spring-boot:build-image
+      working-directory: ./Accounting Service
+    - name: Build and push Docker image
+      run: |
+        IMAGE_ID=eu.gcr.io/symbolic-datum-416912/accountingservice
+        docker push ${IMAGE_ID}
+      working-directory: ./Accounting Service
