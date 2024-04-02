@@ -39,4 +39,4 @@ jobs:
         IMAGE_ID=eu.gcr.io/symbolic-datum-416912/settlementservice
         docker build -t ${IMAGE_ID} .
         docker push ${IMAGE_ID}
-      working-directory: ./Settlement Service
+      working-directory: Settlement Service
