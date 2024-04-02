@@ -18,6 +18,7 @@ jobs:
     - name: Build with Maven
       run: mvn --batch-mode verify
       working-directory: ./Settlement Service
+
   push-to-gcr:
     name: Build Container and Push
     runs-on: ubuntu-latest
@@ -30,3 +31,12 @@ jobs:
       uses: 'google-github-actions/setup-gcloud@v1'
       with:
         version: '>= 363.0.0'
+    - name: Configure Docker
+      run: |
+        gcloud auth configure-docker
+    - name: Build and push Docker image
+      run: |
+        IMAGE_ID=eu.gcr.io/symbolic-datum-416912/settlementservice
+        docker build -t ${IMAGE_ID} .
+        docker push ${IMAGE_ID}
+      working-directory: ./Settlement Service
