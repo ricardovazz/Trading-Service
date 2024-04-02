@@ -19,6 +19,10 @@ public class Settlement {
     @NotNull(message = "Settlement amount is required.")
     private BigDecimal amount;
 
+    @NotNull(message = "Price is required.")
+    @Positive(message = "Price must be positive.")
+    private BigDecimal price;
+
     @NotNull
     private LocalDateTime settlementDate;
 }

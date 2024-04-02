@@ -28,7 +28,7 @@ public class SecurityConfig {
         http
                 .csrf().disable() // Disable CSRF protection
                 .authorizeExchange()
-                .pathMatchers("/trades/**").authenticated()
+                //.pathMatchers("/trades/**").authenticated()
                 .anyExchange().permitAll()
                 .and()
                 .httpBasic();
