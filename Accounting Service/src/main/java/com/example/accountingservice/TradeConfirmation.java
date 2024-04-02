@@ -12,11 +12,13 @@ import java.time.LocalDateTime;
 public class TradeConfirmation {
 
     private Long tradeId;
-    @NotBlank(message = "Status is required.")
     private String status;
     @NotNull(message = "Quantity is required.")
     @Positive(message = "Quantity must be positive.")
     private BigDecimal confirmedQuantity;
+    @NotNull(message = "Price is required.")
+    @Positive(message = "Price must be positive.")
+    private BigDecimal price;
     @NotNull(message = "Confirmation timestamp is required.")
     private LocalDateTime confirmationTimestamp;
 }

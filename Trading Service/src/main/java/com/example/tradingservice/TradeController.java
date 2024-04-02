@@ -25,7 +25,7 @@ public class TradeController {
     }
 
     @PostMapping
-    public Mono<Trade> createTrade(@RequestBody @Valid Trade trade) {
+    public Mono<TradeConfirmation> createTrade(@RequestBody @Valid Trade trade) {
         return tradeService.createTrade(trade);
     }
 }
